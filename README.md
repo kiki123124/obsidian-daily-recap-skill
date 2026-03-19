@@ -2,6 +2,8 @@
 
 Generate structured daily recap notes from Telegram chatlogs into Obsidian `KnowledgeInbox`.
 
+> 中文：把 Telegram 聊天日志自动整理成 Obsidian 每日复盘笔记（按主题分组，含结论/例子/可复用做法/TODO）。
+
 ## What it does
 
 For each day, this skill creates a markdown recap file with:
