@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import os
 import re
 from pathlib import Path
 
@@ -149,17 +150,20 @@ def make_daily_recap(chatlog: Path, out_file: Path, date_str: str):
 
 
 def main():
+    default_chatlog_dir = os.getenv(
+        "RECAP_CHATLOG_DIR",
+        "/Users/mac/.openclaw/workspace/memory/chatlog/telegram-6404111657",
+    )
+    default_out_dir = os.getenv(
+        "RECAP_OUT_DIR",
+        "/Users/mac/Library/Mobile Documents/iCloud~md~obsidian/Documents/BossmanVault/KnowledgeInbox",
+    )
+
     p = argparse.ArgumentParser(description="Build Obsidian daily recap from Telegram chatlogs")
     p.add_argument("--date", help="YYYY-MM-DD")
     p.add_argument("--all", action="store_true", help="Process all available chatlog dates")
-    p.add_argument(
-        "--chatlog-dir",
-        default="/Users/mac/.openclaw/workspace/memory/chatlog/telegram-6404111657",
-    )
-    p.add_argument(
-        "--out-dir",
-        default="/Users/mac/Library/Mobile Documents/iCloud~md~obsidian/Documents/BossmanVault/KnowledgeInbox",
-    )
+    p.add_argument("--chatlog-dir", default=default_chatlog_dir)
+    p.add_argument("--out-dir", default=default_out_dir)
     args = p.parse_args()
 
     chatlog_dir = Path(args.chatlog_dir)
